@@ -50,7 +50,7 @@ public class alumnosInt extends JPanel{
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ABCC.add(new consultasAutos());
+                ABCC.add(new alumnosConsultas());
                 ABCC.setVisible(true);
             }
         });
