@@ -42,7 +42,7 @@ public class alumnosInt extends JPanel{
         btnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ABCC.add(new cambiosAutos());
+                ABCC.add(new alumnosCambios());
                 ABCC.setVisible(true);
             }
         });
