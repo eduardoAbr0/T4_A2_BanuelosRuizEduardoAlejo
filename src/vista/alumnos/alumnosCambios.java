@@ -1,5 +1,8 @@
 package vista.alumnos;
 
+import controlador.AlumnoDAO;
+import modelo.Alumno;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +13,8 @@ public class alumnosCambios extends JInternalFrame {
     GridBagConstraints gbc = new GridBagConstraints();
     JTextField txtID, txtCURP, txtNombre, txtPrimerap, txtSegundoap, txtFechanac, txtEdad, txtSemestre, txtCarrera;
     JButton btnCambiar, btnLimpiar;
-    //Cliente cl;
-    //DAOClienteImpl daoCliente = new DAOClienteImpl();
+    Alumno alumno;
+    AlumnoDAO daoAlumno = new AlumnoDAO();
 
     public alumnosCambios(){
         super("Cambios alumnos", true, true, true, true);
@@ -22,18 +25,12 @@ public class alumnosCambios extends JInternalFrame {
         setResizable(false);
 
         JLabel txID = new JLabel("Num_Control: ");
-        agregarComp(txID,0,0,1,1,1,1);
+        agregarComp(txID,0,1,1,1,1,1);
         add(txID, gbc);
         txtID = new JTextField(10);
-        agregarComp(txtID,1,0,1,1,1,1);
+        agregarComp(txtID,1,1,1,1,1,1);
         add(txtID, gbc);
 
-        JLabel txModelo = new JLabel("CURP: ");
-        agregarComp(txModelo,0,1,1,1,1,1);
-        add(txModelo, gbc);
-        txtCURP = new JTextField(10);
-        agregarComp(txtCURP,1,1,1,1,1,1);
-        add(txtCURP, gbc);
 
         JLabel txPrecio = new JLabel("Nombre: ");
         agregarComp(txPrecio,0,2,1,1,1,1);
@@ -56,32 +53,25 @@ public class alumnosCambios extends JInternalFrame {
         agregarComp(txtSegundoap,1,4,1,1,1,1);
         add(txtSegundoap, gbc);
 
-        JLabel txCilindros = new JLabel("Fecha nac: ");
-        agregarComp(txCilindros,0,5,1,1,1,1);
-        add(txCilindros, gbc);
-        txtFechanac = new JTextField(10);
-        agregarComp(txtFechanac,1,5,1,1,1,1);
-        add(txtFechanac, gbc);
-
         JLabel txColor = new JLabel("Edad: ");
-        agregarComp(txColor,0,6,1,1,1,1);
+        agregarComp(txColor,0,5,1,1,1,1);
         add(txColor, gbc);
         txtEdad = new JTextField(10);
-        agregarComp(txtEdad,1,6,1,1,1,1);
+        agregarComp(txtEdad,1,5,1,1,1,1);
         add(txtEdad, gbc);
 
         JLabel txCapL = new JLabel("Semestre: ");
-        agregarComp(txCapL,0,7,1,1,1,1);
+        agregarComp(txCapL,0,6,1,1,1,1);
         add(txCapL, gbc);
         txtSemestre = new JTextField(10);
-        agregarComp(txtSemestre,1,7,1,1,1,1);
+        agregarComp(txtSemestre,1,6,1,1,1,1);
         add(txtSemestre, gbc);
 
         JLabel txEstado = new JLabel("Carrera: ");
-        agregarComp(txEstado,0,8,1,1,1,1);
+        agregarComp(txEstado,0,7,1,1,1,1);
         add(txEstado, gbc);
         txtCarrera = new JTextField(10);
-        agregarComp(txtCarrera,1,8,1,1,1,1);
+        agregarComp(txtCarrera,1,7,1,1,1,1);
         add(txtCarrera, gbc);
 
 
@@ -89,26 +79,22 @@ public class alumnosCambios extends JInternalFrame {
         btnCambiar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
-                 cl = new Cliente(Integer.parseInt(txtID.getText()),
-                        txtNombre.getText(),
-                        txtPrimerA.getText(),
-                        txtSegundoA.getText(),
-                        Integer.parseInt(txtNumeroCasa.getText()),
-                        txtCalle.getText(),
-                        txtColonia.getText(),
-                        Integer.parseInt(txtCP.getText()),
-                        Integer.parseInt(txtTelefono.getText(), );
 
-                daoCliente.actualizar(cl);
-*/
+                alumno = new Alumno(txtID.getText(), txtNombre.getText() , txtPrimerap.getText(), txtSegundoap.getText(), (byte)Integer.parseInt(txtEdad.getText()) ,  (byte)Integer.parseInt(txtSemestre.getText()), txtCarrera.getText() );
+
+                if (daoAlumno.actualizarAlumno(alumno)) {
+                    JOptionPane.showMessageDialog(null, "Alumno Actualizado Correctamente");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error al actualizar alumno");
+                }
+
             }
         });
-        agregarComp(btnCambiar,0,12,1,1,1,1);
+        agregarComp(btnCambiar,0,8,1,1,1,1);
         add(btnCambiar, gbc);
 
         btnLimpiar = new JButton("Limpiar");
-        agregarComp(btnLimpiar,1,12,1,1,1,1);
+        agregarComp(btnLimpiar,1,8,1,1,1,1);
         add(btnLimpiar, gbc);
 
         setVisible(true);

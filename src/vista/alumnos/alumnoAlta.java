@@ -25,18 +25,11 @@ public class alumnoAlta extends JInternalFrame{
         setResizable(false);
 
         JLabel txID = new JLabel("Num_Control: ");
-        agregarComp(txID,0,0,1,1,1,1);
+        agregarComp(txID,0,1,1,1,1,1);
         add(txID, gbc);
         txtID = new JTextField(10);
-        agregarComp(txtID,1,0,1,1,1,1);
+        agregarComp(txtID,1,1,1,1,1,1);
         add(txtID, gbc);
-
-        JLabel txModelo = new JLabel("CURP: ");
-        agregarComp(txModelo,0,1,1,1,1,1);
-        add(txModelo, gbc);
-        txtCURP = new JTextField(10);
-        agregarComp(txtCURP,1,1,1,1,1,1);
-        add(txtCURP, gbc);
 
         JLabel txPrecio = new JLabel("Nombre: ");
         agregarComp(txPrecio,0,2,1,1,1,1);
@@ -59,32 +52,25 @@ public class alumnoAlta extends JInternalFrame{
         agregarComp(txtSegundoap,1,4,1,1,1,1);
         add(txtSegundoap, gbc);
 
-        JLabel txCilindros = new JLabel("Fecha nac: ");
-        agregarComp(txCilindros,0,5,1,1,1,1);
-        add(txCilindros, gbc);
-        txtFechanac = new JTextField(10);
-        agregarComp(txtFechanac,1,5,1,1,1,1);
-        add(txtFechanac, gbc);
-
         JLabel txColor = new JLabel("Edad: ");
-        agregarComp(txColor,0,6,1,1,1,1);
+        agregarComp(txColor,0,5,1,1,1,1);
         add(txColor, gbc);
         txtEdad = new JTextField(10);
-        agregarComp(txtEdad,1,6,1,1,1,1);
+        agregarComp(txtEdad,1,5,1,1,1,1);
         add(txtEdad, gbc);
 
         JLabel txCapL = new JLabel("Semestre: ");
-        agregarComp(txCapL,0,7,1,1,1,1);
+        agregarComp(txCapL,0,6,1,1,1,1);
         add(txCapL, gbc);
         txtSemestre = new JTextField(10);
-        agregarComp(txtSemestre,1,7,1,1,1,1);
+        agregarComp(txtSemestre,1,6,1,1,1,1);
         add(txtSemestre, gbc);
 
         JLabel txEstado = new JLabel("Carrera: ");
-        agregarComp(txEstado,0,8,1,1,1,1);
+        agregarComp(txEstado,0,7,1,1,1,1);
         add(txEstado, gbc);
         txtCarrera = new JTextField(10);
-        agregarComp(txtCarrera,1,8,1,1,1,1);
+        agregarComp(txtCarrera,1,7,1,1,1,1);
         add(txtCarrera, gbc);
 
 
@@ -93,27 +79,21 @@ public class alumnoAlta extends JInternalFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                /*
-                alumno = new Alumno(
-                        Integer.parseInt(txtID.getText()),
-                        txtModelo.getText(),
-                        txtColor.getText(),
-                        Double.parseDouble(txtPrecio.getText()),
-                        txtFechaf.getText(),
-                        Integer.parseInt(txtPeso.getText()),
-                        Byte.parseByte(txtCilindros.getText()),
-                        txtEstado.getText(),
-                        null,
-                        null,
-                        null);
-                */
+                alumno = new Alumno(txtID.getText(), txtNombre.getText() , txtPrimerap.getText(), txtSegundoap.getText(), (byte)Integer.parseInt(txtEdad.getText()) ,  (byte)Integer.parseInt(txtSemestre.getText()), txtCarrera.getText() );
+
+                if (daoAlumno.agregarAlumno(alumno)){
+                    JOptionPane.showMessageDialog(null, "Se agrego al alumno");
+                }else {
+                    JOptionPane.showMessageDialog(null, "Error al agregar alumno");
+                }
+
             }
         });
-        agregarComp(btnAgregar,0,9,1,1,1,1);
+        agregarComp(btnAgregar,0,8,1,1,1,1);
         add(btnAgregar, gbc);
 
         btnLimpiar = new JButton("Limpiar");
-        agregarComp(btnLimpiar,1,9,1,1,1,1);
+        agregarComp(btnLimpiar,1,8,1,1,1,1);
         add(btnLimpiar, gbc);
 
         setVisible(true);

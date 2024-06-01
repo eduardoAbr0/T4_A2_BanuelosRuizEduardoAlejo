@@ -1,5 +1,8 @@
 package vista.alumnos;
 
+import controlador.AlumnoDAO;
+import modelo.Alumno;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -11,9 +14,9 @@ public class alumnosConsultas extends JInternalFrame {
     GridBagConstraints gbc = new GridBagConstraints();
     JTextField txtID;
     JButton btnConsultar, btnLimpiar;
-    JTable tbAuto;
+    JTable tbAlumno;
     DefaultTableModel tableModel = new DefaultTableModel();
-    //DAOEmpleadoImpl daoEmpleado = new DAOEmpleadoImpl();
+    AlumnoDAO daoAlumno = new AlumnoDAO();
 
     public alumnosConsultas(){
         super("Consultas alumnos", true, true, true, true);
@@ -35,17 +38,16 @@ public class alumnosConsultas extends JInternalFrame {
         btnConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
-                Empleado emp = daoEmpleado.buscar(Integer.valueOf(txtID.getText()));
 
-                if (emp == null){
-                    JOptionPane.showMessageDialog(null, "Error al consultar empleado");
+                Alumno alumno = daoAlumno.buscarUno(txtID.getText());
+
+                if (alumno == null){
+                    JOptionPane.showMessageDialog(null, "Error al consultar alumno");
                 }else {
-                    Object[] empleadoE = {emp.getId(), emp.getNombre(), emp.getPapellido(), emp.getSapellido(), emp.getNumeroCasa(), emp.getCalle(), emp.getColonia(), emp.getCp(), emp.getTelefono(), emp.getTipoEmpleado()};
+                    Object[] empleadoE = {alumno.getNumControl(), alumno.getNombre(), alumno.getPrimerAp(), alumno.getSegundoAp(), alumno.getEdad(), alumno.getSemestre(), alumno.getCarrera()};
                     tableModel.addRow(empleadoE);
-                    tbEmpleado = new JTable(tableModel);
+                    tbAlumno = new JTable(tableModel);
                 }
-                */
             }
         });
         agregarComp(btnConsultar,0,1,1,1,1,1);
@@ -60,13 +62,12 @@ public class alumnosConsultas extends JInternalFrame {
         tableModel.addColumn("Nombre");
         tableModel.addColumn("Primer_ap");
         tableModel.addColumn("Segundo_ap");
-        tableModel.addColumn("Fecha_nac");
         tableModel.addColumn("Edad");
         tableModel.addColumn("Semestre");
         tableModel.addColumn("Carrera");
 
-        tbAuto = new JTable(tableModel);
-        JScrollPane jsCl = new JScrollPane(tbAuto);
+        tbAlumno = new JTable(tableModel);
+        JScrollPane jsCl = new JScrollPane(tbAlumno);
         agregarComp(jsCl,0,2,2,2,1,4);
         gbc.fill = GridBagConstraints.BOTH;
         add(jsCl, gbc);

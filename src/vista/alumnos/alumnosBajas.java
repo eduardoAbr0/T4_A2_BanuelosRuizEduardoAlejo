@@ -1,5 +1,7 @@
 package vista.alumnos;
 
+import controlador.AlumnoDAO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +12,7 @@ public class alumnosBajas extends JInternalFrame {
     GridBagConstraints gbc = new GridBagConstraints();
     JTextField txtID;
     JButton btnEliminar;
-    //DAOEmpleadoImpl daoEmpleado = new DAOEmpleadoImpl();;
+    AlumnoDAO daoAlumno = new AlumnoDAO();
 
     public alumnosBajas(){
         super("Bajas alumnos", true, true, true, true);
@@ -31,7 +33,12 @@ public class alumnosBajas extends JInternalFrame {
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //daoEmpleado.eliminar(Integer.parseInt(txtID.getText()));
+                if (daoAlumno.eliminarAlumno(txtID.getText())){
+                    JOptionPane.showMessageDialog(null, "Se elimino alumno");
+                }else {
+                    JOptionPane.showMessageDialog(null, "Fallo al eliminar alumno");
+                }
+
             }
         });
         agregarComp(btnEliminar,0,1,1,2,1,1);
