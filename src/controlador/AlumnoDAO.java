@@ -48,7 +48,7 @@ public class AlumnoDAO {
         return conexion.ejecutarInstruccionDML(sql);
     }
 
-    public ArrayList mostrarAlumnos(String filtro){
+    public ArrayList mostrarAlumnos(){
         ArrayList listaAlumnos = new ArrayList();
 
         String sql = "SELECT * FROM alumnos";

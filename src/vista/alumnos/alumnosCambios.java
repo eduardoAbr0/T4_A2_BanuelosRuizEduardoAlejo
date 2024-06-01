@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class alumnosCambios extends JInternalFrame {
     GridBagLayout gbl = new GridBagLayout();
     GridBagConstraints gbc = new GridBagConstraints();
-    JTextField txtID, txtCURP, txtNombre, txtPrimerap, txtSegundoap, txtFechanac, txtEdad, txtSemestre, txtCarrera;
+    JTextField txtID, txtNombre, txtPrimerap, txtSegundoap, txtEdad, txtSemestre, txtCarrera;
     JButton btnCambiar, btnLimpiar;
     Alumno alumno;
     AlumnoDAO daoAlumno = new AlumnoDAO();

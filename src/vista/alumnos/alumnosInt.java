@@ -1,21 +1,25 @@
 package vista.alumnos;
 
+import controlador.AlumnoDAO;
+import modelo.Alumno;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class alumnosInt extends JPanel{
     GridBagLayout gbl = new GridBagLayout();
     GridBagConstraints gbc = new GridBagConstraints();
-    JButton btnAgregar, btnEliminar, btnMostrarAlumnos, btnMostrarEncuestas, btnRestablecer, btnBuscar, btnEncuesta, btnModificar;
-    JTable tbAutos, tbEncuestas;
+    JButton btnAgregar, btnEliminar, btnMostrarAlumnos, btnRestablecer, btnBuscar, btnModificar;
+    JTable tbAlumnos;
     JPanel panelTool;
     JDesktopPane ABCC = new JDesktopPane();
-    //ArrayList<Empleado> listEmp;
+    ArrayList<Alumno> listEmp;
     DefaultTableModel modelAlum = new DefaultTableModel();
-    //DAOClienteImpl daoCliente = new DAOClienteImpl()            ;
+    AlumnoDAO daoAlumno = new AlumnoDAO();
     public alumnosInt() {
         setLayout(gbl);
 
@@ -61,29 +65,30 @@ public class alumnosInt extends JPanel{
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         add(panelTool, gbc);
 
-        //CONSULTA DE TODOS LOS CLIENTES
-        btnMostrarAlumnos = new JButton("Actualizar alumnos");
+        //CONSULTA DE TODOS LOS ALUMNOS
+        btnMostrarAlumnos = new JButton("Actualizar/Mostrar alumnos");
         btnMostrarAlumnos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
-                listEmp = daoEmpleado.buscarTodos();
+                modelAlum.setRowCount(0);
 
-                for(Empleado emp: listEmp){
-                    modelClientes.addRow(new Object[]{emp.getId(),emp.getNombre(),emp.getPapellido(),emp.getSapellido(),emp.getNumeroCasa(),emp.getCalle(),emp.getColonia(),emp.getCp(),emp.getTelefono()});
+                listEmp = daoAlumno.mostrarAlumnos();
+
+                for(Alumno alumno : listEmp){
+                    modelAlum.addRow(new Object[]{alumno.getNumControl(), alumno.getNombre(), alumno.getPrimerAp(), alumno.getSegundoAp(), alumno.getEdad(), alumno.getSemestre(), alumno.getCarrera()});
                 }
-                tbClientes.setModel(modelClientes);
+                tbAlumnos.setModel(modelAlum);
 
-                 */
+
             }
         });
-        //TABLA PARA MOSTRAR DATOS CLIENTES
-        String autos[] = {"Num_Control","CURP","Nombre","Primer_Ap","Segundo_Ap","Fecha_Nac","Edad","Semestre","Carrera"};
-        for (String col: autos){
+        //TABLA PARA MOSTRAR DATOS ALUMNOS
+        String alumnos[] = {"Num_Control","Nombre","Primer_Ap","Segundo_Ap","Fecha_Nac","Edad","Semestre","Carrera"};
+        for (String col: alumnos){
             modelAlum.addColumn(col);
         }
-        tbAutos = new JTable(modelAlum);
-        JScrollPane jsCl = new JScrollPane(tbAutos);
+        tbAlumnos = new JTable(modelAlum);
+        JScrollPane jsCl = new JScrollPane(tbAlumnos);
         agregar(0,3,1,1,1,1);
         gbc.anchor = GridBagConstraints.CENTER;
         add(btnMostrarAlumnos, gbc);
