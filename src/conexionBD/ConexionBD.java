@@ -20,9 +20,7 @@ public class ConexionBD {
 
             String URL = "jdbc:mysql://localhost:3306/BD_Escuela";
 
-            conexion = DriverManager.getConnection(URL, "salvatore", "salvatore");
-
-            System.out.println("Yeeeiiiiii ya casi soy ISC");
+            conexion = DriverManager.getConnection(URL, "root", "pizza");
 
         } catch (ClassNotFoundException e) {
             //throw new RuntimeException(e);

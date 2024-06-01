@@ -2,6 +2,7 @@ package vista;
 
 import controlador.AlumnoDAO;
 import modelo.Alumno;
+import vista.alumnos.alumnosInt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,9 +30,9 @@ public class VetnanaInicio extends JFrame{
         general = new JPanel(cl);
         opciones = new JPanel();
         //CREACION DE SUBPANELES PARA LA PARTE CENTRAL DEL PANEL GENERAL
-        //panelAlumnos pnlAlum = new panelAlumnos();
+        alumnosInt pnlAlum = new alumnosInt();
 
-        //general.add(pnlAlum,"ALUMNOS");
+        general.add(pnlAlum,"ALUMNOS");
 
         //PERSONALIZACION BASICA DE COLORES PARA IDENTIFICAR
         barraArriba.setBackground(Color.LIGHT_GRAY);
@@ -45,7 +46,7 @@ public class VetnanaInicio extends JFrame{
 
         //CREACION Y CONFIGURACION DE BOTONES DE LA PARTE IZQUIERDA, QUE SERAN
         //DE USO PARA ACCEDER A LOS DIFERENTES SUBPANELES
-        btnAlumnos = new JButton("Alumnos");    
+        btnAlumnos = new JButton("Alumnos");
         btnAlumnos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
