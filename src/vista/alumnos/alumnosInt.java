@@ -34,7 +34,7 @@ public class alumnosInt extends JPanel{
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ABCC.add(new bajasAutos());
+                ABCC.add(new alumnosBajas());
                 ABCC.setVisible(true);
             }
         });
