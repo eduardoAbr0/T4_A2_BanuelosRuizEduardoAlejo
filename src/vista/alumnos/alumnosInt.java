@@ -26,7 +26,7 @@ public class alumnosInt extends JPanel{
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ABCC.add(new altasAutos());
+                ABCC.add(new alumnoAlta());
                 ABCC.setVisible(true);
             }
         });
